@@ -2,7 +2,10 @@ import { BiUser } from 'react-icons/bi'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux'
+import {register} from '../features/auth/authSlice'
 import Nav from '../components/navigation/Nav';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
 
@@ -15,6 +18,11 @@ const RegisterPage = () => {
   });
 
   const { first_name, last_name, email, password, re_password } = formData
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
   const handleChange = (e) => {
     setFormData((prev) => ({       
@@ -30,9 +38,31 @@ const RegisterPage = () => {
     if(password !== re_password) {
       //console.log('Password do not Match');
       toast.error('Password do not Match');
-  
+    } else if(first_name === "" || last_name === "" || email === "" || password === "" || re_password === "")  {
+      toast.error('There is not empty fields');
+    } 
+    else {
+      const userData = {
+        first_name, 
+        last_name, 
+        email,
+        password, 
+        re_password
+      }
+      dispatch(register(userData))
     }
   }
+
+  useEffect(() => {
+    if (isError) {
+        toast.error(message)
+    }
+
+    if (isSuccess || user) {
+        navigate("/")
+        toast.success("An activation email has been sent to your email. Please check your email")
+    }
+  })
 
 
 

@@ -8,7 +8,8 @@ import HomePage from './pages/HomePage'
 import Dashboard from './pages/Dashboard'
 import RegisterPage from './pages/RegisterPage'
 import ActivatePage from './pages/ActivatePage'
-import ResetPasswordPage from './pages/ResetPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage'
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
           <Route path='/reset_password' element={<ResetPasswordPage />}/>
           <Route path='/dashboard' element={<Dashboard />}/>
           <Route path='/activate_account' element={<ActivatePage />}/>
+
+          <Route path='*' element={<NotFoundPage />}/>
         </Routes>
       </Router>
       <ToastContainer />
