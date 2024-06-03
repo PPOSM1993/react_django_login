@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux'
-import {register} from '../features/auth/authSlice'
+import { register, reset } from '../features/auth/authSlice'
 import Nav from '../components/navigation/Nav';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 
 const RegisterPage = () => {
 
@@ -51,6 +52,8 @@ const RegisterPage = () => {
       }
       dispatch(register(userData))
     }
+
+    //dispatch(reset())
   }
 
   useEffect(() => {
@@ -62,7 +65,8 @@ const RegisterPage = () => {
         navigate("/")
         toast.success("An activation email has been sent to your email. Please check your email")
     }
-  })
+    dispatch(reset())
+  }, [isError, isSuccess, user, navigate, dispatch])
 
 
 
@@ -71,7 +75,9 @@ const RegisterPage = () => {
       <Nav/>
       <div className="container auth__container">
         <h2 className="main__title">Register <BiUser /> </h2>
-
+        <br />
+        {isLoading && <Spinner />}
+        <br />
         <form className="auth__form">
           <input type="text" placeholder="First Name" name="first_name" onChange={handleChange} value={first_name} required />
           <input type="text" placeholder="Last Name" name="last_name" onChange={handleChange} value={last_name} required />
