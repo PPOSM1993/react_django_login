@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import Nav from '../components/navigation/Nav'
 import {BiLogInCircle} from 'react-icons/bi'
 import { toast } from 'react-toastify';
-
+import HomePage from './HomePage';
+import {Link} from 'react-router-dom'
 
 
 const ResetPasswordPage = () => {
@@ -43,8 +44,11 @@ const ResetPasswordPage = () => {
         <form className="auth__form">
           <input type="text" placeholder="email" name="email" onChange={handleChange} value={email} required />
           <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Reset Password</button>
+          <Link to='/'>Go Home Page</Link>
         </form>
+        
       </div>
+      
     </>
   )
 }

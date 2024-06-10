@@ -1,7 +1,6 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import Nav from '../components/navigation/Nav'
-
+import {Link} from 'react-router-dom'
 const HomePage = () => {
   return (
     <>
@@ -10,7 +9,7 @@ const HomePage = () => {
         <h1 className="main__title">My Bullet Journal</h1>
         <div className="home__buttons">
           <Link to="/login" className="btn btn-secondary">Login</Link>
-          <Link to="/register" className="btn btn-primary">Sign up</Link>
+          <Link to="/register" className="btn btn-primary">Register New User</Link>
         </div>
       </div>
     </>

@@ -1,15 +1,14 @@
+import { useState } from 'react'
+import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
-//import Nav from './components/navigation/Nav'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import HomePage from './pages/HomePage'
 import Dashboard from './pages/Dashboard'
-import RegisterPage from './pages/RegisterPage'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ResetPasswordPage from './pages/ResetPassword'
 import ActivatePage from './pages/ActivatePage'
-import ResetPasswordPage from './pages/ResetPasswordPage'
-import NotFoundPage from './pages/NotFoundPage';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
 
@@ -17,14 +16,12 @@ function App() {
     <>
       <Router>
         <Routes>
-        <Route path='/' element={<HomePage />}/>
-          <Route path='/login' element={<LoginPage />}/>
           <Route path='/register' element={<RegisterPage />}/>
-          <Route path='/reset_password' element={<ResetPasswordPage />}/>
+          <Route path='/login' element={<LoginPage />}/>
+          <Route path='/' element={<HomePage />}/>
           <Route path='/dashboard' element={<Dashboard />}/>
-          <Route path='/activate_account' element={<ActivatePage />}/>
-
-          <Route path='*' element={<NotFoundPage />}/>
+          <Route path='/reset_password' element={<ResetPasswordPage />}/>
+          <Route path='/activate_page' element={<ActivatePage />}/>
         </Routes>
       </Router>
       <ToastContainer />
